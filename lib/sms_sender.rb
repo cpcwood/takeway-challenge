@@ -14,7 +14,6 @@ class Sms
       body: message
     )
     rescue => e
-      puts 'test'
       e
     end
   end

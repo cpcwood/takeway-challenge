@@ -24,6 +24,10 @@ class Takeaway
     @order_history[client] << [order_items, total]
   end
 
+  def name
+    RESTURANT_NAME
+  end
+
   private
 
   def interpret_order(order)
