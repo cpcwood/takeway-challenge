@@ -1,24 +1,21 @@
-require 'twilio-ruby'
-
 class Sms
-  def initialize(twilio_id, twilio_token, twilio_number)
-    @account_sid = twilio_id
-    @auth_token = twilio_token
-    @twilio_number = twilio_number
-    @client = Twilio::REST::Client.new(@account_sid, @auth_token)
-    @error_log = []
+  def initialize(sms_client, sms_sid, sms_token, sms_number)
+    @account_sid = sms_sid
+    @auth_token = sms_token
+    @from_number = sms_number
+    @client = sms_client.new(@account_sid, @auth_token)
   end
 
   def send(message, client)
     begin
     @client.messages.create(
-      from: @twilio_number,
+      from: @from_number,
       to: client,
       body: message
     )
     rescue => e
-      @error_log << e
-      raise "Number not valid"
+      puts 'test'
+      e
     end
   end
 end

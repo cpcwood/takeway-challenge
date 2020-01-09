@@ -1,5 +1,3 @@
-require 'capybara/rspec'
-
 #add simple cov setup to rspec setup file=>>
 require 'simplecov'
 require 'simplecov-console'
