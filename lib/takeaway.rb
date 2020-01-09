@@ -2,7 +2,7 @@ class Takeaway
   RESTURANT_NAME = "TAKEAWAY à la CHRIS\n"
 
   def initialize(printer_module:, sms_app:, menu:)
-    self.class.include(printer_module)
+    @printer = printer_module
     @order_history = Hash.new([])
     @sent_messages = []
     @sms = sms_app
@@ -10,7 +10,7 @@ class Takeaway
   end
 
   def show_menu
-    pretty_menu = print_table(table: @menu)
+    pretty_menu = @printer::print_table(table: @menu)
     how_to_order = "Please use the following comma seperated order format whether ordering directly or via text: '<item1>, <quantity>, <item2>, <quantity>, etc..., <total_price>, <long_format_phone_number>'"
     puts RESTURANT_NAME + pretty_menu + how_to_order
   end

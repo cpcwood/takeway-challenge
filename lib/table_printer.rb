@@ -1,5 +1,5 @@
 module TablePrinter
-  def print_table(table:)
+  def self.print_table(table:)
     @@headers = table[0].keys
     @@items = table
     @@columns = @@headers.each_with_object({}) { |header, hash|
@@ -9,19 +9,19 @@ module TablePrinter
 
   private
 
-  def write_header
+  def self.write_header
     "| #{@@columns.map{|header, width| header.to_s.capitalize.ljust(width)}.join(' | ') } |\n"
   end
 
-  def write_divider
+  def self.write_divider
     "+-#{@@columns.map{|header, width| "-" * width}.join("-+-") }-+\n"
   end
 
-  def write_items
+  def self.write_items
     @@items.map { |item| write_line(item) }.join('')
   end
 
-  def write_line(item)
+  def self.write_line(item)
     "| #{@@columns.map{|header, width| item[header].to_s.ljust(width)}.join(" | ") } |\n"
   end
 end
